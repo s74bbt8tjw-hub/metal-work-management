@@ -8,10 +8,10 @@
 <div class="panel"><h2>Add Client to Project</h2><p class="muted">First invite the client from Supabase → Authentication → Users → Invite user. Once they confirm their email, enter it below.</p><label>Client email</label><input id="clientEmail" type="email"><button onclick="addClient()">Give Client Access</button></div></div>
 <div class="panel"><h2>Work List</h2><div id="works"></div></div><div class="panel"><h2>Queries & Approvals</h2><div id="queries"></div></div></section><div id="msg" role="status"></div></main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>
-const URL = 'https://nxxsyhhzgahmiwawrrmgm.supabase.co';
+const SUPABASE_URL = 'https://nxxsyhhzgahmiwawrrmgm.supabase.co';
 const KEY='sb_publishable_1r-AT8XKRDPFuE-IpvrLNQ_Y7zJ1O0p';
 const db=window.supabase.createClient(URL,KEY);let session=null,projects=[],current=null,works=[],role='';
-const el=id=>document.getElementById(id),escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const db=window.supabase.createClient(SUPABASE_URL,KEY);let session=null,projects=[],current=null,works=[],role='';
 function msg(t){el('msg').textContent=t||'';if(el('authmsg'))el('authmsg').textContent=t||'';if(el('recoverymsg'))el('recoverymsg').textContent=t||''}function check({data,error}){if(error)throw error;return data}
 function report(e){console.error(e);msg(e.message||String(e))}function admin(){return ['admin','contractor'].includes(role)}
 async function login(){try{msg('Signing in...');check(await db.auth.signInWithPassword({email:el('email').value.trim(),password:el('password').value}));await start()}catch(e){report(e)}}
