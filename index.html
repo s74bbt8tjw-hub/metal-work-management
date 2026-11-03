@@ -10,7 +10,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script>
 const SUPABASE_URL = 'https://nxxsyhhzgahmiwawrrmgm.supabase.co';
 const KEY='sb_publishable_1r-AT8XKRDPFuE-IpvrLNQ_Y7zJ1O0p';
-const db=window.supabase.createClient(URL,KEY);let session=null,projects=[],current=null,works=[],role='';
 const db=window.supabase.createClient(SUPABASE_URL,KEY);let session=null,projects=[],current=null,works=[],role='';
 function msg(t){el('msg').textContent=t||'';if(el('authmsg'))el('authmsg').textContent=t||'';if(el('recoverymsg'))el('recoverymsg').textContent=t||''}function check({data,error}){if(error)throw error;return data}
 function report(e){console.error(e);msg(e.message||String(e))}function admin(){return ['admin','contractor'].includes(role)}
